@@ -15,6 +15,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="{{ asset ('theme/admin/bower_components/font-awesome/css/font-awesome.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="{{ asset ('theme/admin/bower_components/Ionicons/css/ionicons.min.css') }}">
+  
   <!-- Theme style -->
   <link rel="stylesheet" href="{{ asset ('theme/admin/dist/css/AdminLTE.min.css') }}">
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
@@ -38,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>NT</b>SV</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>NhaTro</b>SinhVien</span>
+      <span class="logo-lg"><b>MONVIET</b>Restaurant</span>
     </a>
 
     <!-- Header Navbar -->
@@ -87,10 +88,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <footer class="main-footer">
     <!-- To the right -->
     <div class="pull-right hidden-xs">
-      NhaTroSinhVien
+      MonVietRestaurant
     </div>
     <!-- Default to the left -->
-    <strong> <a href="#">Nhatrosinhvien</a></strong>
+    <strong> <a href="#">MonVietRestaurant</a></strong>
   </footer>
 
   <!-- Control Sidebar -->
@@ -118,6 +119,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src=" {{ asset ('theme/admin/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
 <!-- AdminLTE App -->
 <script src=" {{ asset ('theme/admin/dist/js/adminlte.min.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 @yield ('script')
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

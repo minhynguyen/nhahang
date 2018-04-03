@@ -14,3 +14,27 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['prefix'=>'admin'], function(){	
+	
+	Route::resource('loaimonan', 'loaimonanController');
+	Route::resource('monan', 'monanController');
+	Route::resource('khuvuc', 'khuvucController');
+	Route::resource('ban', 'banController');
+	Route::resource('hoadon', 'frontendController');
+
+});
+
+Route::get('/order', function () {
+    return view('backend.hoadon.order');
+});
+// Route::resource('/hoadon', 'frontendController');
+
+Route::resource('/hoadon', 'frontendController@index');
+
+// Route::get('/ajax-kv_ma', function () {
+//     $kv_ma = Input::get('kv_ma');
+
+//     $ban = ban::where('kv_ma', '=', $kv_ma)->get();
+
+//     return Response::json($ban);
+// });
