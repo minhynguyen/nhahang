@@ -22,7 +22,9 @@
 
 <!-- noi dung can thay doi o giua -->
 @section('content')
-  <div class="col-md-6">
+<form name="frmhoadon" method="POST" action="{{route('hoadon.store')}}" enctype="multipart/form-data"> <!-- action tu controller -->
+  {{ csrf_field() }}
+  <div class="col-md-7">
 
           <div class="box box-danger">
             <div class="box-header">
@@ -35,9 +37,10 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">KHU VỰC/ SẢNH</span>
-                    <span class="info-box-number">Chọn Sảnh</span>
+                    <!-- <span class="info-box-number">Chọn Sảnh</span> -->
 
                     <select class="form-control select2 select2-hidden-accessible" name="kv_ma" id="kv_ma">
+                      <option  disabled selected>CHỌN SẢNH</option>
                        @foreach($dskhuvuc as $kv)
                         <option value="{{$kv->kv_ma}}">{{$kv->kv_ten}}</option>
                         @endforeach
@@ -52,13 +55,13 @@
 
                   <div class="info-box-content">
                     <span class="info-box-text">BÀN</span>
-                    <span class="info-box-number">Chọn Bàn</span>
-                    <select class="form-control select2 select2-hidden-accessible" name="b_ma", id="b_ma">
-                      <option>gada</option>
-                      <option>gada</option>
-                      <option>gada</option>
-                      <option>gada</option>
+                    <!-- <span class="info-box-number">Chọn Bàn</span> -->
+                    <!-- <div id="b_ma"> -->
+                  
+                    <select class="form-control select2 select2-hidden-accessible" id="b_ma" name="b_ma">
+                      <option  disabled selected>CHỌN BÀN</option>
                     </select>
+                    <!-- </div> -->
                   </div>
                   <!-- /.info-box-content -->
                 </div>
@@ -71,52 +74,75 @@
           <div class="box box-info">
             <div class="box-header">
               <div class="col-md-6">
-              <h3 class="box-title">Danh Sách Các Món Ăn</h3>
+              <h3 class="box-title">NHẬP ORDER</h3>
               </div>
-              <div class="col-md-6">
-              <select class="form-control select2 select2-hidden-accessibl">
-                <option>Chọn Loại Món Ăn</option>
+              <div class="col-md-12">
+              <select class="form-control select2 select2-hidden-accessibl" name="lma_ma", id="lma_ma">
+                <option  disabled selected>CHỌN LOẠI MÓN ĂN</option>
+                @foreach($dsloaimonan as $lma)
+                        <option value="{{$lma->lma_ma}}">{{$lma->lma_ten}}</option>
+                @endforeach
               </select>
               </div>
+
+              <div class="col-md-12" style="margin-top: 10px;">
+              <select class="form-control select2 select2-hidden-accessibl" name="ma_ma", id="ma_ma">
+                
+              </select>
+              </div>
+
+              <div class="col-md-12" style="margin-top: 10px">
+              <select class="form-control select2 select2-hidden-accessibl" name="lma_ma", id="lma_ma">
+                <option  disabled selected>CHỌN SỐ LƯỢNG</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+              </select>
+              </div>
+
+              
+
             </div>
             <div class="box-body">
               <div class="box-body">
-                <div class="col-md-6">
-                        <div class="media">
-                            <div class="media-left">
-                                <a href="">
-                                    <img src="" style="width: 50px;height: 50px;border-radius: 4px;box-shadow: 0 1px 3px rgba(0,0,0,.15);">
-                                </a>
-                                <a href="" class="btn btn-success btn-sm ad-click-event" style="margin-top: 30px">ADD</a>
-                            </div>
-                            <div class="media-body">
-                                <div class="clearfix">
-                                    
+                
+                <table class="table table-bordered">
+                <tbody>
+                  <tr>
+                  <th style="width: 10px"></th>
+                  <th>TÊN MÓN ĂN</th>
+                  <th>ĐƠN GIÁ</th>
+                  
+                  <th style="width: 40px">SỐ LƯỢNG</th>
+                  <!-- <th>THÀNH TIỀN</th> -->
+                </tr>
+                @foreach($dsmonan as $ma)
+                <tr>
+                  <th><input name="monan[id][]" id="monan" type="checkbox" value="{{$ma->ma_ma}}"></th>
+                  <th>{{$ma->ma_ten}}</th>
+                  <th>{{$ma->ma_dongia}}</th>
+                  <th>
+                    <select name="monan[soluong][]">
+                      <option disabled selected>Chọn Số Lượng</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                    </select>
+                  </th>
+                </tr>
+                
+              </tbody>
+              @endforeach
+            </table>
 
-                                    <h4 style="margin-top: 0">Tên</h4>
-
-                                    <p>Loại</p>
-                                    <p style="margin-bottom: 0">
-                                        <i class="fa fa-shopping-cart margin-r5"></i>Giá
-                                    </p>
-
-                                    <p style="margin-bottom: 0">
-                                        <select class="form-control select2 select2-hidden-accessibl">
-                                          <option> 1</option>
-                                          <option> 1</option>
-                                          <option> 1</option>
-                                          <option> 1</option>
-                                        </select>
-                                    </p>
-                                    <!-- <p class="pull-right"> -->
-                                        
-                                        
-                                    <!-- </p> -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                  </div>
+                  
+                
+              </div>
+                  
               
              
               
@@ -124,11 +150,15 @@
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
+          <div class="col-md-12" style="margin-top: 10px">
+                <button class="btn btn-info" type="submit" style="width: 100%">THÊM</button>
+              </div>
         </div>
       </div>
+      <!-- <button type="submit" class="btn btn-primary">THÊM MỚI</button> -->
+    </form>
 
-        <div class="col-md-6">
+        <div class="col-md-5">
           <div class="box box-primary">
             <div class="box-header">
               <h3 class="box-title">Chi Tiết Hóa Đơn</h3>
@@ -235,29 +265,54 @@
         url: '{{url('/timban')}}',
         data: {'kv_ma' : kv_ma},
         success:function(data){
-          console.log(data);
-          // $("#productData").html(response);
+          $("#b_ma").empty();
+          var dataObject = JSON.parse(data);
+          dataObject.forEach(function(ele) {
+            console.log(ele);
+            $("#b_ma").append('<option value = "' + ele.b_ma +'">' + ele.b_ten + '</option>');
+          })
         }
       });
     });
-  // $("#kv_ma").click(function(){
-  //   var cat = $("#catID").val();
-  //   var price = $('#priceID').val();
-    
-  //   $.ajax({
-  //     type: 'get',
-  //     dataType: 'html',
-  //     url: '{{url('/productsCat')}}',
-  //     data: 'cat_id=' + cat + '&price=' + price,
-  //     success:function(response){
-  //       console.log(response);
-  //       $("#productData").html(response);
-  //     }
-  //   });
+});
 
 
-  // });
+$(document).ready(function(){
+    $(document).on('change', '#lma_ma', function(){
+      var lma_ma = $(this).val();
+      console.log(lma_ma);
+      $.ajax({
+        type: 'get',
+        dataType: 'html',
+        url: '{{url('/timmonan')}}',
+        data: {'lma_ma' : lma_ma},
+        success:function(data){
+          // $("#lma_ma").empty();
+          $("#ma_ten").empty();
+          $("#ma_ma").empty();
+          // $("#ma_hinh").empty();
+          var dataObject = JSON.parse(data);
+          dataObject.forEach(function(ele) {
+            console.log(ele);
+            $("#ma_ma").append('<option value = "' + ele.ma_ma +'">' + ele.ma_ten + '</option>');
+            // $("#ma_ma").html(ele);
+            // $("#ma_ten").append(ele.ma_ten);
+            // $("#ma_gia").append(ele.ma_dongia);
+            // // $("#ma_ten").append(ele.ma_ten);
+            // // $ha = ele.ma_hinhanh;
+            // // console.log($ha);
+            // $("#ma_hinh").append('<img src="{{asset('upload/ele.ma_hinhanh')}}" alt="abc" height="150" width="100">');
 
+
+
+            
+
+          })
+
+          
+        }
+      });
+    });
 });
 </script>
 

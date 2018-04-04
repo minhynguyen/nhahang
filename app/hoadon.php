@@ -9,7 +9,7 @@ class hoadon extends Model
     public    $timestamps   = false;
 
     protected $table        = 'hoadon';
-    protected $fillable     = ['kh_ma', 'nv_ma', 'hd_tongtien', 'hd_taomoi', 'hd_capnhat', 'hd_trangthai'];
+    protected $fillable     = ['nv_ma', 'hd_tongtien', 'hd_taomoi', 'hd_capnhat', 'hd_trangthai'];
     protected $guarded      = ['hd_ma'];
 
     protected $primaryKey   = 'hd_ma';

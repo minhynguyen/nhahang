@@ -24,12 +24,13 @@ Route::group(['prefix'=>'admin'], function(){
 
 });
 
-Route::get('/order', function () {
-    return view('backend.hoadon.order');
-});
+// Route::get('/timban', function () {
+//     return view('backend.hoadon.order');
+// });
 // Route::resource('/hoadon', 'frontendController');
 
-Route::resource('/hoadon', 'frontendController@index');
+Route::get('/timban', 'frontendController@timban');
+Route::get('/timmonan', 'frontendController@timmonan');
 
 // Route::get('/ajax-kv_ma', function () {
 //     $kv_ma = Input::get('kv_ma');

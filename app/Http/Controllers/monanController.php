@@ -113,7 +113,7 @@ class monanController extends Controller
 
 
         if($request->hasFile('ma_hinhanh')){
-            $file = $request->sp_hinh;
+            $file = $request->ma_hinhanh;
             $monan->ma_hinhanh = $file->getClientOriginalName();
             $file->move('upload', $monan->ma_hinhanh); //hàm này di chuyển ảnh tới thư mục public/upload
         }

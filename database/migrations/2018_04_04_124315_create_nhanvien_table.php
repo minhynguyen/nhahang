@@ -19,9 +19,11 @@ class CreateNhanvienTable extends Migration
             $table->string('nv_diachi', 50)->comment('Tên chủ đề # Tên chủ đề');
             $table->string('nv_sdt', 11)->comment('Tên chủ đề # Tên chủ đề');
             $table->string('nv_email', 50)->comment('Tên chủ đề # Tên chủ đề');
-            $table->timestamp('lma_taomoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo chủ đề');
-            $table->timestamp('lma_capnhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật chủ đề gần nhất');
-            $table->tinyInteger('lma_trangthai')->default('2')->comment('Trạng thái # Trạng thái chủ đề: 1-khóa, 2-khả dụng');
+            $table->timestamp('nv_taomoi')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm tạo # Thời điểm đầu tiên tạo chủ đề');
+            $table->timestamp('nv_capnhat')->default(DB::raw('CURRENT_TIMESTAMP'))->comment('Thời điểm cập nhật # Thời điểm cập nhật chủ đề gần nhất');
+            $table->tinyInteger('nv_trangthai')->default('2')->comment('Trạng thái # Trạng thái chủ đề: 1-khóa, 2-khả dụng');
+            $table->unsignedTinyInteger('q_ma');
+            $table->foreign('q_ma')->references('q_ma')->on('quyen')->onDelete('cascade')->onUpdate('cascade');
             
             $table->unique(['nv_email']);
         });

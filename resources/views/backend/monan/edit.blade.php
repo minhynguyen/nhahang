@@ -44,6 +44,11 @@
             <input type="text" class="form-control" id="exampleInputEmail1" name="ma_dongia" placeholder="Nhập Tên Chủ Đề" value="{{$monan->ma_dongia}}">
           </div>
           
+          <!-- <div class="form-group">
+            <img src="{{ asset('upload/' . $monan->ma_hinhanh)}}" width="50px", height="50px">
+            <label for="exampleInputEmail1">hinh</label>
+            <input type="file" class="form-control" id="exampleInputEmail1" name="ma_hinhanh" placeholder="Nhập Tên Chủ Đề" value="{{$monan->ma_hinhanh}}">
+          </div> -->
           <div class="form-group">
             <img src="{{ asset('upload/' . $monan->ma_hinhanh)}}" width="50px", height="50px">
             <label for="exampleInputEmail1">hinh</label>
