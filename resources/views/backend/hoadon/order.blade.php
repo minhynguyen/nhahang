@@ -166,58 +166,47 @@
             <div class="box-body">
               <div class="box-body">
               <table class="table table-bordered">
-                <tbody><tr>
-                  <th style="width: 10px">STT</th>
-                  <th>TÊN MÓN ĂN</th>
-                  <th>ĐƠN GIÁ</th>
+                <tbody>
+                  <tr>
+                  <th style="width: 10px">Mã</th>
+                  <th style="width: 10px">Bàn</th>
+                  <th style="width: 10px">Trạng Thái</th>
                   
-                  <th style="width: 40px">SỐ LƯỢNG</th>
-                  <th>THÀNH TIỀN</th>
+                  <th style="width: 20%">Ngày Tạo</th>
+                  <th style="text-align: center;">Action</th>
                 </tr>
+                 @foreach($dshoadon as $hd)
                 <tr>
-                  <td>1.</td>
-                  <td>Update software</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                    </div>
+                 
+                  <td>{{$hd->hd_ma}}</td>
+                  <td>{{$hd->b_ten}}</td>
+                  <!-- <td>{{$hd->hd_trangthai}}</td> -->
+                  @if ($hd->hd_trangthai === 2)
+
+                      <td style="text-align: center;"><span class="badge" style="background-color: orange">CHƯA</span></td>
+                  @else
+                      <td style="text-align: center;"><span class="badge" style="background-color: green">ĐÃ TT</span></td>
+                  @endif
+                  <td><p class="pull-right">
+                    <small>
+                      <?php \Carbon\Carbon::setLocale('vi')  ?>
+                     {{ \Carbon\Carbon::createFromTimeStamp(strtotime($hd->hd_taomoi  ))->diffForHumans() }}
+                     </small></p></td>
+                  <td align="center">
+                    <a class="btn btn-info" href=""><em class="fa fa-pencil"></em></a>
+                    <a class="btn btn-danger" href="{{ route('hoadon.show', ['hoadon]' => $hd->hd_ma]) }}"><em class="fa fa-eye"></em></a>
+                    
                   </td>
-                  <td><span class="badge bg-red">55%</span></td>
+
+                  
                 </tr>
-                <tr>
-                  <td>2.</td>
-                  <td>Clean database</td>
-                  <td>
-                    <div class="progress progress-xs">
-                      <div class="progress-bar progress-bar-yellow" style="width: 70%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-yellow">70%</span></td>
-                </tr>
-                <tr>
-                  <td>3.</td>
-                  <td>Cron job running</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-primary" style="width: 30%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-light-blue">30%</span></td>
-                </tr>
-                <tr>
-                  <td>4.</td>
-                  <td>Fix and squish bugs</td>
-                  <td>
-                    <div class="progress progress-xs progress-striped active">
-                      <div class="progress-bar progress-bar-success" style="width: 90%"></div>
-                    </div>
-                  </td>
-                  <td><span class="badge bg-green">90%</span></td>
-                </tr>
+                  @endforeach
               </tbody>
+
             </table>
-            <h1>Tổng Tiền:</h1>
+            <!-- <h1>Tổng Tiền:</h1> -->
             </div>
+            
               
 
             </div>
@@ -226,7 +215,7 @@
           <!-- /.box -->
 
           <!-- iCheck -->
-          <div class="box box-success">
+          <!-- <div class="box box-success">
             <div class="box-header">
               <h3 class="box-title">THANH TOÁN</h3>
             </div>
@@ -240,11 +229,8 @@
               
               
             </div>
-            <!-- /.box-body -->
-            <!-- <div class="box-footer">
-              Many more skins available. <a href="http://fronteed.com/iCheck/">Documentation</a>
-            </div> -->
-          </div>
+            
+          </div> -->
           <!-- /.box -->
         </div>
 

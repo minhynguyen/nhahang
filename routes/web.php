@@ -22,13 +22,14 @@ Route::group(['prefix'=>'admin'], function(){
 	Route::resource('ban', 'banController');
 	Route::resource('hoadon', 'frontendController');
 
+
 });
 
 // Route::get('/timban', function () {
 //     return view('backend.hoadon.order');
 // });
 // Route::resource('/hoadon', 'frontendController');
-
+Route::get('/quanlisanh', 'frontendController@qli');
 Route::get('/timban', 'frontendController@timban');
 Route::get('/timmonan', 'frontendController@timmonan');
 

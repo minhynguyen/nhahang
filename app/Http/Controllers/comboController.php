@@ -34,7 +34,33 @@ class comboController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $monan = $request->input('monan.id');
+        $soluong = $request->input('monan.soluong');
+        // $soluong = $request->input('soluong');
+        // dd($monan);
+        // dd($soluong);
+        $combo = new combo();
+        $combo->cb_ten = $request->cb_ten;
+        $combo->cb_mota = $request->cb_mota;
+        $combo->cb_gia = $request->cb_gia;
+        $combo->save();
+        
+
+        
+        // dd($monan);
+        foreach ($monan as $index => $ma ) {
+            $chitietcombo = new chitiethoadon();
+            $chitietcombo->hd_ma = $combo->cb_ma;
+            $chitietcombo->ma_ma = $ma;
+            $dsmonan = DB::table('monan')->select('ma_dongia')->where('ma_ma', $ma)->get();
+            // dd($dsmonan);
+            $chitietcombo->cb_soluong = $soluong[$index];
+            // $chitiethoadon->cthd_dongia = $dsmonan * $soluong[$index];
+            $chitietcombo->save();
+              
+        }
+
+        return redirect(route('hoadon.index'));
     }
 
     /**

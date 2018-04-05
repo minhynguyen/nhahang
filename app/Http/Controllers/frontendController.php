@@ -9,6 +9,7 @@ use App\hoadon;
 use App\monan;
 use App\chitiethoadon;
 use DB;
+use Carbon\Carbon;
 
 class frontendController extends Controller
 {
@@ -19,10 +20,24 @@ class frontendController extends Controller
      */
     public function index()
     {
+        $now = Carbon::now();
+        $day = $now->day;
+
+        $dshoadon = DB::table('hoadon')->join('ban', 'ban.b_ma', '=', 'hoadon.b_ma')->get();
         $dskhuvuc = DB::table('khuvuc')->where('kv_trangthai','2')->get();
         $dsloaimonan = DB::table('loaimonan')->where('lma_trangthai','2')->get();
         $dsmonan = DB::table('monan')->where('ma_trangthai','2')->get();
-        return view('backend.hoadon.order')->with('dskhuvuc', $dskhuvuc)->with('dsloaimonan', $dsloaimonan)->with('dsmonan', $dsmonan);
+        return view('backend.hoadon.order')->with('dskhuvuc', $dskhuvuc)->with('dsloaimonan', $dsloaimonan)->with('dsmonan', $dsmonan)->with('dshoadon', $dshoadon);
+    }
+
+    public function qli()
+    {
+        
+        $dshoadon = DB::table('hoadon')->join('ban', 'ban.b_ma', '=', 'hoadon.b_ma')->get();
+        $dskhuvuc = DB::table('khuvuc')->where('kv_trangthai','2')->get();
+        $dsloaimonan = DB::table('loaimonan')->where('lma_trangthai','2')->get();
+        $dsmonan = DB::table('monan')->where('ma_trangthai','2')->get();
+        return view('backend.hoadon.sanh')->with('dskhuvuc', $dskhuvuc)->with('dsloaimonan', $dsloaimonan)->with('dsmonan', $dsmonan)->with('dshoadon', $dshoadon);
     }
 
     public function timban(Request $request)
@@ -97,7 +112,26 @@ class frontendController extends Controller
      */
     public function show($id)
     {
-        //
+        $chitiethoadon = DB::table('hoadon')
+                        ->join('chitiethoadon', 'hoadon.hd_ma', '=', 'hoadon.hd_ma')
+                        ->join('monan', 'chitiethoadon.ma_ma', '=', 'monan.ma_ma')
+                        ->join('users', 'users.id', '=', 'hoadon.id')
+                        ->where('hoadon.hd_ma', $id)
+                        ->get();
+        $hoadon = DB::table('hoadon')
+        ->join('ban', 'ban.b_ma', '=', 'hoadon.b_ma')
+        ->join('khuvuc', 'khuvuc.kv_ma', '=', 'ban.kv_ma')
+        ->where('hoadon.hd_ma', $id)
+                        ->get();
+                        // dd($hoadon);
+        $dsmonan = DB::table('chitiethoadon')
+                    ->join('monan', 'chitiethoadon.ma_ma', '=', 'monan.ma_ma')
+                    ->where('chitiethoadon.hd_ma', $id)
+                    ->get();
+                        // dd($dsmonan);
+
+
+        return view('backend.hoadon.detail')->with('hoadon', $hoadon)->with('chitiethoadon', $chitiethoadon)->with('dsmonan', $dsmonan);
     }
 
     /**
