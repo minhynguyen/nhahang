@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\loaimonan;
+use App\khachhang;
 
-class loaimonanController extends Controller
+class khachhangController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,10 @@ class loaimonanController extends Controller
      */
     public function index()
     {
-        $dsLoai = loaimonan::all();
-        return view('backend.loaimonan.index')->with('dsLoai',$dsLoai);
+        $dskhachhang = khachhang::all();
+        return view('backend.khachhang.index')->with('dskhachhang',$dskhachhang);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +25,7 @@ class loaimonanController extends Controller
      */
     public function create()
     {
-        return view('backend.loaimonan.create');
+        return view('backend.khachhang.create');
     }
 
     /**
@@ -36,12 +37,15 @@ class loaimonanController extends Controller
     public function store(Request $request)
     {
         try{
-        $loai = new loaimonan();
-        $loai->lma_ten = $request->lma_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
+        $khachhang = new khachhang();
+        $khachhang->kh_ten = $request->kh_ten;
+        $khachhang->kh_email = $request->kh_email;
+        $khachhang->kh_diachi = $request->kh_diachi;
+        $khachhang->kh_sdt = $request->kh_sdt;
         
-        $loai->save();
+        $khachhang->save();
 
-        return redirect(route('loaimonan.index')); //trả về trang cần hiển thị
+        return redirect(route('khachhang.index')); //trả về trang cần hiển thị
         }
         catch(QueryException $ex){
             return reponse([
@@ -68,8 +72,8 @@ class loaimonanController extends Controller
      */
     public function edit($id)
     {
-        $loai = loaimonan::find($id);
-        return view('backend.loaimonan.edit')->with('loai', $loai); 
+        $khachhang = khachhang::find($id);
+        return view('backend.khachhang.edit')->with('khachhang', $khachhang);
     }
 
     /**
@@ -82,12 +86,16 @@ class loaimonanController extends Controller
     public function update(Request $request, $id)
     {
         try{
-        $loai = loaimonan::find($id);
-        $loai->lma_ten = $request->lma_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
-        $loai->lma_trangthai = $request->lma_trangthai;
-        $loai->save();
+        $khachhang = khachhang::find($id);
+        $khachhang->kh_ten = $request->kh_ten;
+        $khachhang->kh_email = $request->kh_email;
+        $khachhang->kh_diachi = $request->kh_diachi;
+        $khachhang->kh_sdt = $request->kh_sdt;
+        $khachhang->kh_trangthai = $request->kh_trangthai;
+        
+        $khachhang->save();
 
-        return redirect(route('loaimonan.index')); //trả về trang cần hiển thị
+        return redirect(route('khachhang.index')); //trả về trang cần hiển thị
         }
         catch(QueryException $ex){
             return reponse([
@@ -103,8 +111,8 @@ class loaimonanController extends Controller
      */
     public function destroy($id)
     {
-        $loai = loaimonan::find($id);
-        $loai->delete();
-        return redirect(route('loaimonan.index'));
+        $khachhang = khachhang::find($id);
+        $khachhang->delete();
+        return redirect(route('khachhang.index'));
     }
 }

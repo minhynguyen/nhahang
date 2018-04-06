@@ -3,6 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade as PDF;
+use App\khuvuc;
+use App\ban;
+use App\hoadon;
+use App\monan;
+use App\chitiethoadon;
+use DB;
+use Carbon\Carbon;
 
 class hoadonController extends Controller
 {
@@ -13,7 +21,39 @@ class hoadonController extends Controller
      */
     public function index()
     {
-        //
+        try{
+        
+        $dsmonan = DB::table('monan')
+                    ->where('monan.ma_trangthai', 2)
+                    ->get();
+            // dd($dsmonan);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                
+                'dsmonan' => $dsmonan,
+                
+            ];
+            // dd($data);
+            // xem trước pdf
+            return view('backend.hoadon.menupdf')->with('dsmonan', $dsmonan);
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.hoadon.menupdf', $data);
+            return $pdf->download('menu.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
     }
 
     /**
@@ -34,30 +74,8 @@ class hoadonController extends Controller
      */
     public function store(Request $request)
     {
-        // $nhatro = new nhatro();
-        // $nhatro->nt_ten = $request->nt_ten;
-        // $nhatro->nt_diachi = $request->nt_diachi;
-        // $nhatro->nt_sdtlienhe = $request->nt_sdtlienhe;
-        // $nhatro->nt_kinhdo = $request->nt_kinhdo;
-        // $nhatro->nt_vido = $request->nt_vido;
-        // $nhatro->nt_dientich = $request->nt_dientich;
-        // $nhatro->nt_giathue = $request->nt_giathue;
-        // $nhatro->nt_giadien = $request->nt_giadien;
-        // $nhatro->nt_gianuoc = $request->nt_gianuoc;
-        // $nhatro->nt_tinhtrang = $request->nt_tinhtrang;
-        // $nhatro->nt_trangthai = $request->nt_trangthai;
-        // $nhatro->id = Auth::user()->id;
-        // $nhatro->lnt_ma = $request->lnt_ma;
-        // $nhatro->save();
         
-        $monan = $request->input('monan');
-        // dd($monan[id][soluong]);
-        // foreach ($tienich as $ti) {
-        //     $nhatro_tienich = new nhatro_tienich();
-        //     $nhatro_tienich->nt_ma = $nhatro->nt_ma;
-        //     $nhatro_tienich->ti_ma = $ti;
-        //     $nhatro_tienich->save();
-        // }
+        
         
     }
 
@@ -80,7 +98,33 @@ class hoadonController extends Controller
      */
     public function edit($id)
     {
-        //
+        try{
+            $hoadon = hoadon::find($id);
+            dd($hoadon);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                'hoadon' => $hoadon,
+            ];
+            // xem trước pdf
+            return view('backend.hoadon.hoadonpdf')->with('hoadon', $hoadon);
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.hoadon.hoadonpdf', $data);
+            return $pdf->download('DanhMucHoaDon.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
     }
 
     /**
@@ -103,6 +147,32 @@ class hoadonController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{
+            $hoadon = hoadon::find($id);
+            dd($hoadon);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                'hoadon' => $hoadon,
+            ];
+            // xem trước pdf
+            return view('backend.hoadon.hoadonpdf')->with('hoadon', $hoadon);
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.hoadon.hoadonpdf', $data);
+            return $pdf->download('DanhMucHoaDon.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
     }
 }

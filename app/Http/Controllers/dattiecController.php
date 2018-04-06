@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\loaimonan;
 
-class loaimonanController extends Controller
+class dattiecController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,9 @@ class loaimonanController extends Controller
      */
     public function index()
     {
-        $dsLoai = loaimonan::all();
-        return view('backend.loaimonan.index')->with('dsLoai',$dsLoai);
+        //
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -24,7 +23,7 @@ class loaimonanController extends Controller
      */
     public function create()
     {
-        return view('backend.loaimonan.create');
+        //
     }
 
     /**
@@ -35,18 +34,7 @@ class loaimonanController extends Controller
      */
     public function store(Request $request)
     {
-        try{
-        $loai = new loaimonan();
-        $loai->lma_ten = $request->lma_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
-        
-        $loai->save();
-
-        return redirect(route('loaimonan.index')); //trả về trang cần hiển thị
-        }
-        catch(QueryException $ex){
-            return reponse([
-                'error' => true, 'message' => $ex->getMessage()], 500);
-        }
+        //
     }
 
     /**
@@ -68,8 +56,7 @@ class loaimonanController extends Controller
      */
     public function edit($id)
     {
-        $loai = loaimonan::find($id);
-        return view('backend.loaimonan.edit')->with('loai', $loai); 
+        //
     }
 
     /**
@@ -81,18 +68,7 @@ class loaimonanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-        $loai = loaimonan::find($id);
-        $loai->lma_ten = $request->lma_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
-        $loai->lma_trangthai = $request->lma_trangthai;
-        $loai->save();
-
-        return redirect(route('loaimonan.index')); //trả về trang cần hiển thị
-        }
-        catch(QueryException $ex){
-            return reponse([
-                'error' => true, 'message' => $ex->getMessage()], 500);
-        }
+        //
     }
 
     /**
@@ -103,8 +79,6 @@ class loaimonanController extends Controller
      */
     public function destroy($id)
     {
-        $loai = loaimonan::find($id);
-        $loai->delete();
-        return redirect(route('loaimonan.index'));
+        //
     }
 }

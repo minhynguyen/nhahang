@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\monan;
 use App\loaimonan;
 use DB;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class monanController extends Controller
 {
@@ -78,7 +79,33 @@ class monanController extends Controller
      */
     public function show($id)
     {
-        //
+        try{
+            $monan = monan::all();
+            // dd($monan);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                'monan' => $monan,
+            ];
+            // xem trước pdf
+            return view('backend.monan.monanpdf')->with('monan', $monan);
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.monan.monanpdf', $data);
+            return $pdf->download('DanhMucHoaDon.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
     }
 
     /**
@@ -147,5 +174,37 @@ class monanController extends Controller
         //     $file->remove('upload', $sanpham->sp_hinh);
         // }
         return redirect(route('monan.index'));
+    }
+
+    public function pdf()
+    {
+        try{
+            $monan = monan::all();
+            dd($monan);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                'monan' => $monan,
+            ];
+            // xem trước pdf
+            // return view('backend.monan.monanpdf')->with('monan', $monan);
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.monan.monanpdf', $data);
+            return $pdf->download('DanhMucHoaDon.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
+       
     }
 }

@@ -75,7 +75,12 @@
                   <th style="width: 20%">Thành Tiền</th>
                   <!-- <th style="text-align: center;">Action</th> -->
                 </tr>
+                <?php  
+                  $gia = 0;
+                 ?>
                  @foreach($dsmonan as $ds)
+
+                 
                 <tr>
                  
                   <td>{{$ds->ma_ma}}</td>
@@ -86,7 +91,11 @@
                   <td>{{($ds->ma_dongia * $ds->cthd_soluong)}}</td>
 
                 </tr>
-                <!-- <h1>Tổng Tiền: {{}}</h1>  -->
+                <?php 
+                    
+                    $gia += $ds->ma_dongia * $ds->cthd_soluong;
+                 ?>
+                
                   
                   @endforeach
 
@@ -98,7 +107,22 @@
             <!-- @foreach($dsmonan as $ds)
 
             @endforeach -->
-            <h1>Tổng Tiền: </h1> 
+            <div class="col-md-12">
+              <div class="col-md-6">
+                <button type="submit" class="btn btn-block btn-info btn-lg"> <i class="fa fa-check"></i> Tổng Tiền: </a></button>
+              </div>
+              <div class="col-md-6">
+                <input type="text" class="btn btn-block btn-info btn-lg" name="hd_tongtien" value="{{$gia}}">
+              </div>
+              
+              
+            </div>
+            
+          
+
+
+            <!-- <h1 name="hd_tongtien" value="{{$gia}}">Tổng Tiền: {{$gia}}</h1> -->
+            
             
             
 
@@ -125,12 +149,25 @@
             </div>
             <div class="box-body">
               <div class="col-md-12">
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-block btn-info btn-lg">Thanh Toán</button>
+                @if($hd->hd_trangthai === 2)
+                <div class="col-md-12">
+                    <form method="POST" action="{{route('hoadontest.update', ['hoadon' => $hd->hd_ma])}}">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                        <button type="submit" class="btn btn-block btn-info btn-lg"> <i class="fa fa-check"></i> Thanh Toán </a></button>
+                      </form>
                 </div>
-                <div class="col-md-6">
-                    <button type="button" class="btn btn-block btn-info btn-lg">Xuất Hóa Đơn</button>
+                @endif
+                @if ($hd->hd_trangthai === 1)
+                <div class="col-md-12">
+                    <td colspan="2">
+                    <a href="/nhahang/public/hoadonpdf/{{$hd->hd_ma}}" class="btn btn-block btn-info btn-lg"><i class="fa fa-file-pdf-o"></i> IN HÓA ĐƠN</a>
+                    
+                  </td>
+                    
+                  
                 </div>
+                @endif
               </div>
             </div>
         </div>

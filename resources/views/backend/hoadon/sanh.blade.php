@@ -80,31 +80,7 @@
       </div>
       <!-- <button type="submit" class="btn btn-primary">THÊM MỚI</button> -->
     </form>
-    <div class="col-md-7">
-    <div class="box box-info">
-            <div class="box-header">
-              <div class="col-md-6">
-              <h3 class="box-title">NHẬP ORDER</h3>
-              </div>
-              <div class="col-md-12">
-              <select class="form-control select2 select2-hidden-accessibl" name="lma_ma", id="lma_ma">
-                <option  disabled selected>CHỌN LOẠI MÓN ĂN</option>
-                @foreach($dsloaimonan as $lma)
-                        <option value="{{$lma->lma_ma}}">{{$lma->lma_ten}}</option>
-                @endforeach
-              </select>
-              </div>
-            </div>
-            <div class="box-body" id="monan">
-              
-                  
-              
-             
-              
-            </div>
-            <!-- /.box-body -->
-          </div>
-          </div>
+   
     <div class="col-md-7">
 
           <div class="box box-danger">
@@ -122,7 +98,7 @@
          
           <!-- /.box -->
             <div class="col-md-12" style="margin-top: 10px">
-                <button class="btn btn-info" type="submit" style="width: 100%">THÊM</button>
+                <!-- <button class="btn btn-info" type="submit" style="width: 100%">THÊM</button> -->
             </div>
         </div>
       </div>
@@ -142,7 +118,7 @@
       $.ajax({
         type: 'get',
         dataType: 'html',
-        url: '{{url('/timban')}}',
+        url: '{{url('/qliban')}}',
         data: {'kv_ma' : kv_ma},
         success:function(data){
           $("#b_ma").empty();
@@ -153,7 +129,7 @@
             $("#b_ma").append('<option value = "' + ele.b_ma +'">' + ele.b_ten + '</option>');
             // $("#b_ten").append('<option value = "' + ele.b_ma +'">' + ele.b_ten + '</option>');
             // $("#sanh").append('<span class="info-box-text">'+ele.b_ten+'</span><span class="info-box-text">'+ele.b_tinhtrang+'</span><span class="info-box-text"></span>');
-            $("#sanh").append('<div class="col-md-6"><div class="info-box"><span class="info-box-icon bg-green"><i class="fa  fa-map"></i></span><div class="info-box-content"> Mã Bàn: '+ele.b_ma+'<span class="info-box-text"></span>Tên Bàn: '+ele.b_ten+'<span class="info-box-text"></span>@if('+ele.b_tinhtrang+'=== '1')<span class="badge bg-green">CÓ KHÁCH</span>@else<span class="badge bg-yellow">TRỐNG</span>@endif<span class="info-box-text"></span>'+ele.b_tinhtrang+'</div></div></div>');
+            $("#sanh").append('<div class="col-md-6"><div class="info-box"><span class="info-box-icon bg-green"><i class="fa  fa-map"></i></span><div class="info-box-content"> Mã Bàn: '+ele.b_ma+'<span class="info-box-text"></span>Tên Bàn: '+ele.b_ten+'<span class="info-box-text"></span>@if('+ele.b_tinhtrang+'=== 0)<span class="badge bg-green">CÓ KHÁCH</span>@else<span class="badge bg-yellow">TRỐNG</span>@endif<span class="info-box-text"></span>'+ele.b_tinhtrang+'</div></div></div>');
           })
         }
       });
@@ -161,46 +137,7 @@
 });
 
 
-$(document).ready(function(){
-    $(document).on('change', '#lma_ma', function(){
-      var lma_ma = $(this).val();
-      console.log(lma_ma);
-      $.ajax({
-        type: 'get',
-        dataType: 'html',
-        url: '{{url('/timmonan')}}',
-        data: {'lma_ma' : lma_ma},
-        success:function(data){
-          // $("#lma_ma").empty();
-          $("#ma_ten").empty();
-          $("#ma_ma").empty();
-          $("#monan").empty();
-          // $("#ma_hinh").empty();
-          var dataObject = JSON.parse(data);
-          dataObject.forEach(function(ele) {
-            console.log(ele);
-            $("#ma_ma").append('<option value = "' + ele.ma_ma +'">' + ele.ma_ten + '</option>');
 
-            $("#monan").append('<div class="col-md-6"><div class="info-box"><span class="info-box-icon bg-green"><i class="fa fa-coffee"></i></span><div class="info-box-content"> Mã Món Ăn: '+ele.ma_ma+'<span class="info-box-text"></span>Tên Món Ăn: '+ele.ma_ten+'<span class="info-box-text"></span>'+ele.ma_dongia+'<span class="info-box-text"></span>'+ele.ma_hinhanh+'</div></div></div>');
-            // $("#ma_ma").html(ele);
-            // $("#ma_ten").append(ele.ma_ten);
-            // $("#ma_gia").append(ele.ma_dongia);
-            // // $("#ma_ten").append(ele.ma_ten);
-            // // $ha = ele.ma_hinhanh;
-            // // console.log($ha);
-            // $("#ma_hinh").append('<img src="{{asset('upload/ele.ma_hinhanh')}}" alt="abc" height="150" width="100">');
-
-
-
-            
-
-          })
-
-          
-        }
-      });
-    });
-});
 </script>
 
 @endsection

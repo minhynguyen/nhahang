@@ -1,14 +1,14 @@
 @extends('backend.layouts.app')   
 
 @section('title')
-  Danh Sách Món Ăn
+  Danh Sách Đặt Tiệc
 @endsection
 
 
 @section('page-header')
       <h1>
-        Danh Sách Món Ăn
-        <small>Danh Sách Món Ăn</small>
+        Danh Sách Đặt Tiệc
+        <small>Danh Sách Đặt Tiệc</small>
       </h1>
 @endsection
 @section('css')
@@ -26,7 +26,7 @@
 <div class="box">
 
             <div class="box-header">
-              <h3 class="box-title">Danh Sách Món Ăn</h3>
+              <h3 class="box-title">Danh Sách Đặt Tiệc</h3>
 
               <div class="box-tools">
                 <div class="input-group input-group-sm" style="width: 150px;">
