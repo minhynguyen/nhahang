@@ -23,9 +23,12 @@ Route::group(['prefix'=>'admin'], function(){
 	Route::resource('khuvuc', 'khuvucController');
 	Route::resource('ban', 'banController');
 	Route::resource('hoadon', 'frontendController');
-	Route::resource('menu', 'hoadonController');
+    Route::resource('quanlihoadon', 'hoadonController');
+	Route::resource('dattiec', 'dattiecController');
 	Route::resource('khachhang', 'khachhangController');
-	// Route::get('hoadonpdf', 'pdfController@pdf');
+    Route::get('thongkemonanall', 'pdfController@monan')->name('thongkemonanall');
+    Route::get('thongkemonantheongay', 'pdfController@monantoday')->name('thongkemonantheongay');
+	Route::get('hoadonthang', 'pdfController@hoadontrongthang')->name('hoadonthang');
 	// Route::get('hoadon/pdf', 'hoadonController@destroy')->name('hoadon.pdf');
 	// Route::resource('hoadontest', 'frontendController');
 	Route::get('monan/pdf', 'monanController@show')->name('monan.pdf');

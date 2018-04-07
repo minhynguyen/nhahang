@@ -119,6 +119,9 @@
                   <th style="width: 20%">Ngày Tạo</th>
                   <th colspan="2" style="text-align: center;">Action</th>
                 </tr>
+                <?php  
+                  $tongthu = 0;
+                 ?>
                  @foreach($dshoadon as $hd)
                 <tr>
                  
@@ -150,21 +153,16 @@
                     
                   </td>
 
-                  
-
-                  
-                  
-                  
-
-                  
-
-                  
                 </tr>
+                <?php 
+                    
+                    $tongthu += $hd->hd_tongtien;
+                 ?>
                   @endforeach
               </tbody>
 
             </table>
-            <!-- <h1>Tổng Tiền:</h1> -->
+            <h1>Tổng Thu: {{$tongthu}} VNĐ</h1>
             </div>
             
               

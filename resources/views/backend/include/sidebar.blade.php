@@ -30,8 +30,43 @@
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
         
+        
+
+
         <li class="treeview">
-          <a href="#"><i class="fa fa-mortar-board"></i> <span>LOẠI MÓN ĂN</span>
+          <a href="#"><i class="fa fa-object-group"></i> <span>KHU VỰC/ SẢNH</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('khuvuc.index')}}"> <i class="fa fa-list"></i>Danh Sách Các Khu Vực</a></li>
+            <li><a href="{{route('khuvuc.create')}}"><i class="fa fa-plus"></i>Thêm Khu Vực</a></li>
+          </ul>
+
+
+          
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa  fa-sitemap"></i> <span>BÀN</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('ban.index')}}"> <i class="fa fa-list"></i>Danh Sách Bàn</a></li>
+            <li><a href="{{route('ban.create')}}"><i class="fa fa-plus"></i>Thêm Bàn</a></li>
+          </ul>
+
+
+          
+        </li>
+
+
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-tasks"></i> <span>LOẠI MÓN ĂN</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -47,38 +82,7 @@
 
 
         <li class="treeview">
-          <a href="#"><i class="fa fa-mortar-board"></i> <span>KHU VỰC</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{route('khuvuc.index')}}"> <i class="fa fa-list"></i>Danh Sách Các Khu Vực</a></li>
-            <li><a href="{{route('khuvuc.create')}}"><i class="fa fa-plus"></i>Thêm Khu Vực</a></li>
-          </ul>
-
-
-          
-        </li>
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-mortar-board"></i> <span>BÀN</span>
-            <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="{{route('ban.index')}}"> <i class="fa fa-list"></i>Danh Sách Bàn</a></li>
-            <li><a href="{{route('ban.create')}}"><i class="fa fa-plus"></i>Thêm Bàn</a></li>
-          </ul>
-
-
-          
-        </li>
-
-
-        <li class="treeview">
-          <a href="#"><i class="fa fa-mortar-board"></i> <span>MÓN ĂN</span>
+          <a href="#"><i class="fa fa-coffee"></i> <span>MÓN ĂN</span>
             <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
@@ -86,6 +90,37 @@
           <ul class="treeview-menu">
             <li><a href="{{route('monan.index')}}"> <i class="fa fa-list"></i>Danh Sách Các Món Ăn</a></li>
             <li><a href="{{route('monan.create')}}"><i class="fa fa-plus"></i>Thêm Món Ăn</a></li>
+          </ul>
+
+
+          
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa  fa-money"></i> <span>QUẢN LÍ HÓA ĐƠN</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('quanlihoadon.index')}}"> <i class="fa fa-list"></i>Danh Sách Hóa Đơn</a></li>
+            <li><a href="{{route('hoadon.index')}}"><i class="fa fa-plus"></i>Nhập Hóa Đơn</a></li>
+          </ul>
+
+
+          
+        </li>
+
+        <li class="treeview">
+          <a href="#"><i class="fa  fa-bar-chart"></i> <span>THỐNG KÊ BÁO CÁO</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{route('thongkemonantheongay')}}"> <i class="fa fa-list"></i>Thống kê số lượng món ăn trong ngày</a></li>
+            <li><a href="{{route('thongkemonanall')}}"><i class="fa fa-plus"></i>Thống kê số lượng món ăn đã bán</a></li>
+            <li><a href="{{route('hoadonthang')}}"><i class="fa fa-plus"></i>Thống kê hóa đơn trong tháng</a></li>
           </ul>
 
 

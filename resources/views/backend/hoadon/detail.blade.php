@@ -151,7 +151,7 @@
               <div class="col-md-12">
                 @if($hd->hd_trangthai === 2)
                 <div class="col-md-12">
-                    <form method="POST" action="{{route('hoadontest.update', ['hoadon' => $hd->hd_ma])}}">
+                    <form method="POST" action="{{route('hoadon.update', ['hoadon' => $hd->hd_ma])}}">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
                         <button type="submit" class="btn btn-block btn-info btn-lg"> <i class="fa fa-check"></i> Thanh Toán </a></button>

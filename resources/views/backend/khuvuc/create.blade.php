@@ -13,6 +13,16 @@
 @endsection
 
 @section('content')
+@if($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      <!-- hàm validate trong lar hỗ trợ biến errors -->
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 <form name="frmLoai" method="POST" action="{{route('khuvuc.store')}}"> <!-- action tu controller -->
   {{ csrf_field() }}
   <div class="box box-primary">

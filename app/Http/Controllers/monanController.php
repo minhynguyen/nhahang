@@ -7,6 +7,7 @@ use App\monan;
 use App\loaimonan;
 use DB;
 use Barryvdh\DomPDF\Facade as PDF;
+use App\Http\Requests\monanrequest;
 
 class monanController extends Controller
 {
@@ -39,7 +40,7 @@ class monanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(monanrequest $request)
     {
         try{
         $monan = new monan();

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\khuvuc;
+use App\Http\Requests\khuvucrequest;
 
 class khuvucController extends Controller
 {
@@ -34,8 +35,12 @@ class khuvucController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(khuvucrequest $request)
     {
+        $validatedData = $request->validate([
+            'kv_ten' => 'required',
+            'kv_ten'=>'unique:khuvuc',
+        ]);
         try{
         $khuvuc = new khuvuc();
         $khuvuc->kv_ten = $request->kv_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
@@ -80,7 +85,7 @@ class khuvucController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(khuvucrequest $request, $id)
     {
         try{
         $khuvuc = khuvuc::find($id);

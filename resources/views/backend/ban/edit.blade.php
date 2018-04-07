@@ -13,6 +13,16 @@
 @endsection
 
 @section('content')
+@if($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      <!-- hàm validate trong lar hỗ trợ biến errors -->
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 <form name="frmSanPham" method="POST" action="{{route('ban.update', ['ban'=> $ban->b_ma]) }}" enctype="multipart/form-data"> <!-- action tu controller -->
   {{ csrf_field() }}
   {{ method_field('PATCH') }}

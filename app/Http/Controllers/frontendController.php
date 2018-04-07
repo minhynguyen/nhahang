@@ -11,6 +11,7 @@ use App\chitiethoadon;
 use DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
+use Auth;
 
 class frontendController extends Controller
 {
@@ -34,6 +35,7 @@ class frontendController extends Controller
         $dsloaimonan = DB::table('loaimonan')->where('lma_trangthai','2')->get();
         $dsmonan = DB::table('monan')->where('ma_trangthai','2')->get();
         return view('backend.hoadon.order1')->with('dskhuvuc', $dskhuvuc)->with('dsloaimonan', $dsloaimonan)->with('dsmonan', $dsmonan)->with('dshoadon', $dshoadon)->with('dshoadonchuatt', $dshoadonchuatt);
+
     }
 
     public function qli()
@@ -99,6 +101,7 @@ class frontendController extends Controller
         // dd($soluong);
         $hoadon = new hoadon();
         $hoadon->b_ma = $request->b_ma;
+        $hoadon->id = Auth::user()->id;
         $hoadon->save();
         $a = $request->b_ma;
         $ban = ban::find($a);
@@ -121,7 +124,7 @@ class frontendController extends Controller
               
         }
 
-        return redirect(route('hoadontest.index'));
+        return redirect(route('hoadon.index'));
     }
 
     /**
@@ -183,7 +186,7 @@ class frontendController extends Controller
         $ban->b_tinhtrang = 0;
         $ban->save();
         // return href="/nhahang/public/hoadonpdf/{{$hd->hd_ma}}";
-        return redirect(route('hoadontest.index'));
+        return redirect(route('hoadon.index'));
     }
 
     // public function thanhtoan($id)
@@ -205,7 +208,7 @@ class frontendController extends Controller
         $hoadon = hoadon::find($id);
         $hoadon->hd_trangthai = 1;
         $hoadon->save();
-        return redirect(route('hoadontest.index'));
+        return redirect(route('hoadon.index'));
     }
 
     public function pdf()

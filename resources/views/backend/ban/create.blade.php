@@ -13,6 +13,16 @@
 @endsection
 
 @section('content')
+@if($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      <!-- hàm validate trong lar hỗ trợ biến errors -->
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 <form name="frmmonan" method="POST" action="{{route('ban.store')}}" enctype="multipart/form-data"> <!-- action tu controller -->
   <!-- enctype="multipart/form-data" để đưa ảnh lên host -->
   {{ csrf_field() }}

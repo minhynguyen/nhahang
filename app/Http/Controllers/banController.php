@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\khuvuc;
 use App\ban;
 use DB;
+use App\Http\Requests\banrequest;
 
 class banController extends Controller
 {
@@ -38,8 +39,12 @@ class banController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(banrequest $request)
     {
+        $validatedData = $request->validate([
+            'b_ten' => 'required',
+            'b_ten'=>'unique:ban',
+        ]);
         try{
         $ban = new ban();
         $ban->b_ten = $request->b_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
@@ -91,7 +96,7 @@ class banController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(banrequest $request, $id)
     {
         try{
         $ban = ban::find($id);
