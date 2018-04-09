@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class banrequest extends FormRequest
+class orderrequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,8 @@ class banrequest extends FormRequest
     {
             
         return [
-            'b_ten' => 'required',
+            'b_ma' => 'required',
+            'kv_ma' => 'required',
             
         ];
         
@@ -34,7 +35,8 @@ class banrequest extends FormRequest
     public function messages()
     {
         return [
-            'b_ten.required' => 'Tên Bàn Không Được Bỏ Trống',
+            'b_ma.required' => 'Tên Bàn Không Được Bỏ Trống',
+            'kv_ma.required' => 'Khu Vực Không Được Bỏ Trống',
         ];
     }
 }

@@ -43,8 +43,13 @@ class banController extends Controller
     {
         $validatedData = $request->validate([
             'b_ten' => 'required',
-            'b_ten'=>'unique:ban',
         ]);
+        $count = DB::table('ban')->where([
+                    ['b_ten', '=', $request->b_ten],
+                    ['kv_ma', '=', $request->kv_ma],
+                ])->count();
+        // dd($count);
+        if($count == 0){
         try{
         $ban = new ban();
         $ban->b_ten = $request->b_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
@@ -62,6 +67,11 @@ class banController extends Controller
         catch(QueryException $ex){
             return reponse([
                 'error' => true, 'message' => $ex->getMessage()], 500);
+        }
+        }
+        else{
+            return redirect(route('ban.create'))->with('message', 'Bàn này đã tồn tại trong sảnh này');
+            // return redirect::to('ban.create')->with('message', 'Login Failed');
         }
     }
 
@@ -96,8 +106,14 @@ class banController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(banrequest $request, $id)
+    public function update(Request $request, $id)
     {
+        $count = DB::table('ban')->where([
+                    ['b_ten', '=', $request->b_ten],
+                    ['kv_ma', '=', $request->kv_ma],
+                ])->count();
+        // dd($count);
+        if($count == 0){
         try{
         $ban = ban::find($id);
         $ban->b_ten = $request->b_ten; //trước giống tên cột sau giống tên input ở form nhập liệu
@@ -116,6 +132,11 @@ class banController extends Controller
             return reponse([
                 'error' => true, 'message' => $ex->getMessage()], 500);
         }
+            }
+            else{
+                    return redirect(route('ban.create'))->with('message', 'Bàn này đã tồn tại trong sảnh này');
+                    // return redirect::to('ban.create')->with('message', 'Login Failed');
+                }
     }
 
     /**

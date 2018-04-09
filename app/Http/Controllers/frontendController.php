@@ -12,6 +12,7 @@ use DB;
 use Carbon\Carbon;
 use Barryvdh\DomPDF\Facade as PDF;
 use Auth;
+use App\Http\Requests\orderrequest;
 
 class frontendController extends Controller
 {
@@ -52,7 +53,7 @@ class frontendController extends Controller
     {
         $kv_ma = $request->kv_ma;   
 
-        $data = DB::table('ban')->where('kv_ma', $kv_ma)->where('b_tinhtrang', '=', 0)->get();
+        $data = DB::table('ban')->where('kv_ma', $kv_ma)->where('b_tinhtrang', '=', 0)->where('b_trangthai', '=', 2)->get();
 
 
         return response()->json($data);
@@ -92,7 +93,7 @@ class frontendController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(orderrequest $request)
     {
         $monan = $request->input('monan.id');
         $soluong = $request->input('monan.soluong');

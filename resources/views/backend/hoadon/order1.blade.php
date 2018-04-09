@@ -21,6 +21,16 @@
 
 <!-- noi dung can thay doi o giua -->
 @section('content')
+@if($errors->any())
+  <div class="alert alert-danger">
+    <ul>
+      <!-- hàm validate trong lar hỗ trợ biến errors -->
+      @foreach($errors->all() as $error)
+      <li>{{$error}}</li>
+      @endforeach
+    </ul>
+  </div>
+  @endif
 
 <form name="frmhoadon" method="POST" action="{{route('hoadon.store')}}" enctype="multipart/form-data"> <!-- action tu controller -->
   {{ csrf_field() }}

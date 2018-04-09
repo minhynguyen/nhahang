@@ -23,6 +23,11 @@
     </ul>
   </div>
   @endif
+  @if(session()->has('message'))
+    <div class="alert alert-danger">
+        {{ session()->get('message') }}
+    </div>
+@endif
 <form name="frmmonan" method="POST" action="{{route('ban.store')}}" enctype="multipart/form-data"> <!-- action tu controller -->
   <!-- enctype="multipart/form-data" để đưa ảnh lên host -->
   {{ csrf_field() }}

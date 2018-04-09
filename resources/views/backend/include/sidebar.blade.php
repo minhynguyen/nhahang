@@ -90,6 +90,7 @@
           <ul class="treeview-menu">
             <li><a href="{{route('monan.index')}}"> <i class="fa fa-list"></i>Danh Sách Các Món Ăn</a></li>
             <li><a href="{{route('monan.create')}}"><i class="fa fa-plus"></i>Thêm Món Ăn</a></li>
+            <li><a href="{{route('monanpdf')}}" target="_blank"><i class="fa fa-plus"></i>In Menu</a></li>
           </ul>
 
 

@@ -87,6 +87,45 @@ Route::get('hoadonpdf/{id}',function($id){
         }
 
 });
+
+Route::get('menupdf',function(){
+
+    // $hoadon = hoadon::find($id);
+    try{
+        
+        $dsmonan = DB::table('loaimonan')
+                    ->join('monan', 'loaimonan.lma_ma', '=', 'monan.lma_ma')
+                    ->get();
+            // dd($dsmonan);
+            // $dsChude = ChuDe::take(20)->get(); // hàm này lấy 20 dòng không lấy hết
+            //dd($dsChude);
+            $data = [
+                'dsmonan' => $dsmonan,
+                
+            ];
+            // dd($data);
+            // xem trước pdf
+            return view('backend.monan.menupdf')->with('dsmonan', $dsmonan);
+                                                
+
+            // xuất pdf và cho download
+            $pdf = PDF::loadView('backend.monan.menupdf', $data);
+            return $pdf->download('Menu.pdf');
+        }
+        catch(QueryException $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+
+        } catch(PDOExpection $ex){
+            return reponse([
+                'error' => true,
+                'message' => $ex->getMessage()
+            ], 200);
+        }
+
+})->name('monanpdf');
 // Route::get('/timban', function () {
 //     return view('backend.hoadon.order');
 // });
@@ -105,4 +144,4 @@ Route::get('/timmonan', 'frontendController@timmonan');
 // });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
